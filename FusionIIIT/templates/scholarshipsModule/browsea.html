@@ -1,0 +1,58 @@
+{% load static %}
+{% block awards %}
+{% comment %}The tab menu starts here!{% endcomment %}
+
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="awards">
+           Awards And Scholarships
+        </a>
+    </div>
+{% comment %}The tab menu starts here!{% endcomment %}
+<div class="ui active tab" data-tab="awards">
+        <div class="ui vertical segment">
+
+                <div class="ui form" style="padding: 8px; padding-left: 24px; padding-right: 24px;">
+
+                    <div class="ui header">
+                        Scholarships:
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                    <button class="ui blue button" name="McmButtona">MCM</button>
+                    </form>
+                    
+                    
+                    <div class="ui header">
+                        Medals:
+                    </div>
+                    <div class="three fields">
+                        <div class="field">
+                    <form method="POST">
+                        {% csrf_token %}
+                    <button class="ui yellow button" name="goldButtona">GOLD</button>
+                    </form>
+                    </div>
+                    <div class="field">
+                    <form method="POST">
+                        {% csrf_token %}
+                    <button class="ui grey button" name="silverButtona">SILVER</button>
+                    </form>
+                    </div>
+                    <div class="field">
+                    <form method="POST">
+                            {% csrf_token %}
+                    <button class="ui brown button" name="dmButtona">PROFICIENCY</button>
+                    </form>
+                    </div>
+                    
+                    </div>
+                    
+                
+                </div>
+            <br>
+            <br>
+        </div>
+</div>
+
+{% comment %}The tab menu ends here!{% endcomment %}
+{% endblock %}

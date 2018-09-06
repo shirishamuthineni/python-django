@@ -1,0 +1,87 @@
+{% load static %}
+{% block viewmcm %}
+
+    {% comment %}The tab menu starts here!{% endcomment %}
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="winners">
+            View Mcm Details
+        </a>
+    </div>
+
+    <div class="ui active tab" data-tab="winners">
+        <div class="ui vertical segment">
+            <table class="ui very basic collapsing celled sortable table"
+                   style="padding-left: 2.5%;
+                                                          padding-right: 2.5%;
+                                                          padding-top: 1%;
+                                                          padding-bottom: 1.5%;
+                                                          margin: auto;">
+                <thead>
+                <tr>
+                    <th class="four wide">
+                        Student
+                    </th>
+
+                    <th class="two wide">
+                        Father Name
+                    </th>
+
+                    <th class="six wide">
+                            Mother Name
+                        </th>
+
+
+                    <th class="six wide">
+                        Total Income
+                    </th>
+
+                    <th class="six wide">
+                        Status     
+                        </th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for student in mcm %}
+                <tr>
+                    <td>
+                        <h4 class="ui image header">
+                            <img src="{% static 'globals/img/zlatan.jpg' %}" class="ui mini circular image">
+                            <div class="content">
+                               {{student.student_id}}
+                            </div>
+                        </h4>
+                    </td>
+
+                    <td>
+                            {{student.father_name}}
+                    </td>
+
+                    <td>
+                            {{student.sister_name}}
+                    </td>
+
+                    <td>
+                            {{student.annual_income}}
+                    </td>
+
+                
+
+                    <td>
+                         {{student.status}}
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+                
+                </tbody>
+            </table>
+
+            <br>
+            <div class="ui divider"></div>
+        </div>
+    </div>
+
+{% endblock %}

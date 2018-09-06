@@ -1,0 +1,120 @@
+{% load static %}
+{% block silvermedal %}
+
+    {% comment %}The tab menu starts here!{% endcomment %}
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="goldmedal">
+          Director's Silver Medal
+        </a>
+
+        <a class="right floated item">
+        <button name="Download" class="ui primary button">
+            Download
+            <i class="right floated download icon"></i>
+        </button>
+    </a>
+    </div>
+
+
+ <div class="ui active tab" data-tab="goldmedal">
+        <div class="ui vertical segment">
+            <form method="POST" class="ui form" style="padding-left: 36px; padding-right: 36px;">
+                {% csrf_token %}
+        <div class="three fields">
+                <div class="six wide field">
+                        <label>Hall no</label>
+                        <div class="ui large input">
+                                <input placeholder="Room no."  name="room_no" value="{{request.user.extrainfo.student.hall_no}}" type="number">
+                            </div>
+                        </div>
+                
+                    <div class="six wide field">
+                        <label>Room no</label>
+                        <div class="ui large input">
+                            <input placeholder="Room no."  name="room_no" type="text" value="{{request.user.extrainfo.student.room_no}}">
+                        </div>
+                    </div>
+
+                    <div class="six wide field">
+                            <label>Type</label>
+                            <select class="ui fluid search selection large dropdown" name="type">
+                                    <option selected hidden>Select</option> 
+                                    {% for award in awards %}
+                                    <option value="{{award.id}}">{{award.award_name}}</option>
+                                    {% endfor %}
+                                </select>
+                     </div>
+                </div>
+            
+         
+                   
+           
+         
+                
+           <div class="two fields">
+                <div class="eight wide field ">
+                    <label>Father's Name</label>
+                    <div class="ui large input">
+                        <input placeholder="Fathers Name" name="father_name" type="text" value="{{request.user.extrainfo.student.father_name}}">
+                    </div>
+                </div>
+                <div class="eight wide field ">
+                    <label>Mother's Name</label>
+                    <div class="ui large input">
+                        <input placeholder="Mother's Name" name="mother_name" type="text" value="{{request.user.extrainfo.student.father_name}}">
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+              <div class="field">
+                        <label>Permanent Address:</label>
+                        <textarea rows="2" name="p_address" value="{{request.user.extrainfo.address}}"></textarea>
+                    </div>
+
+                   <div class="field">
+                        <label>Correspondance Address:</label>
+                        <textarea rows="2" name="c_address"></textarea>
+                    </div>
+                </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Nearest Police Station</label>
+                    <div class="ui large input">
+                        <input placeholder="Police Station" name="nps" type="text">
+                    </div>
+            </div>
+            <div class="field">
+                <label>Nearest Railway Station</label>
+                    <div class="ui large input">
+                        <input placeholder="Railway Station" name="nrs" type="text">
+                    </div>
+            </div>
+        </div>
+
+              
+					<div class="two fields">
+                            <div class="field">
+                                    <a class="right floated item">
+                                   <label><br></label>               
+                                   <div class="seven wide field">
+                                       <label>Upload file</label>
+                                       <div class="ui fluid input">
+                                           <input type="file" name="myfile">
+                                       </div>
+                                   </div>
+                               </div>
+                        <div class="field">
+						  <a class="right floated item">
+									<label><br></label>
+									<button type="submit" name="Submit_silver" class="ui primary large right floated button">
+										Submit
+									</button>
+                            </a>
+                        </div>
+                    </div>
+
+            </form>
+    </div>
+ </div>
+
+{% endblock %}

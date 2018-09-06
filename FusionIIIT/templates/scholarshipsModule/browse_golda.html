@@ -1,0 +1,75 @@
+{% load static %}
+{% block browsecat %}
+{% comment %}The tab menu starts here!{% endcomment %}
+<div class="ui pointing secondary menu">
+    <a class="active item" data-tab="browsecat">
+        Submitted Applications
+    </a>
+</div>
+
+<div class="ui active tab" data-tab="browsecat">
+    <div class="ui vertical segment">
+            <form method="POST" class="ui form" style="padding-left: 36px; padding-right: 36px;">
+                    {% csrf_token %}
+        <table class="ui striped table">
+                
+            <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>CPI</th>
+                <th>File</th>
+                <th>Accept</th>
+                <th>Reject</th>
+            </tr>
+            </thead>
+            <tbody>
+                    {% for winner in gold %}
+                    {% if winner.status == 'INCOMPLETE' %}
+            <tr>
+                <td>
+                    <div class="content">
+                            {{winner.student.id}}
+                    </div>   
+                </td>
+                
+                <td>
+                    <div class="content">
+                            {{winner.student.cpi}}
+                    </div>   
+                </td>
+                <td>
+                <form method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{winner.id}}"/>
+                        <a href="/media/{{winner.relevant_document}}" download><button type='button' class="ui blue button" name="Form">Files</button>
+                        </a>    
+                    </form>
+                </td>
+                <td>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{winner.id}}"/>
+                    <button class="ui blue button" name="Verify_gold" value="{{winner.id}}">Verify</button>
+                        </form>
+                </td>
+                <td>
+                    <form method='POST'>
+                        {%csrf_token %}
+                        <input type="hidden" name="id" value="{{winner.id}}"/>
+                    <button class="ui blue button" name="Reject_gold">Reject</button>
+                    </form>
+                </td>
+                
+            </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        </form>
+    </div>
+
+    <div class="ui divider"></div>
+</div>
+
+{% comment %}The tab menu starts here!{% endcomment %}
+{% endblock %}
